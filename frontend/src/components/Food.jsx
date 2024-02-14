@@ -5,7 +5,7 @@ import { UserContext } from "../contexts/UserContext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const BACKEND_URL = import.meta.env.REACT_APP_BACKEND_URL;
 
 function Food(props) {
   const navigate = useNavigate();

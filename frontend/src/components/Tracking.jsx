@@ -5,7 +5,7 @@ import Food from "./Food";
 import Header from "./Header";
 import diet from "../assets/diet.png";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const BACKEND_URL = import.meta.env.REACT_APP_BACKEND_URL;
 
 function Tracking() {
   const loggedData = useContext(UserContext);

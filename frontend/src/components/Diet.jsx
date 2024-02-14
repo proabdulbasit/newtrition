@@ -4,7 +4,7 @@ import { useContext } from "react";
 import Header from "./Header";
 import shrug from "../assets/shrug.png";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const BACKEND_URL = import.meta.env.REACT_APP_BACKEND_URL;
 
 function Diet() {
   let loggedData = useContext(UserContext);

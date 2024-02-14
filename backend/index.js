@@ -11,8 +11,8 @@ import { trackingModel } from "./models/trackingModel.js";
 import { verifyToken } from "./verifyToken.js";
 
 const secretKey = process.env.SECRET_KEY;
-const DBurl = process.env.MONGODB_URL;
-const port = process.env.PORT;
+const DBurl = "mongodb+srv://newtrition:9sDVkUm25WBtoCkW@cluster0.lmkutuc.mongodb.net/Newtrition?retryWrites=true&w=majority";
+// const port = process.env.PORT;
 
 // database connection
 mongoose
@@ -153,25 +153,36 @@ app.get(`${frontend}/tracking/:userid/:date`, async (req, res) => {
   date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
 
   // Format the date with leading zeros using toLocaleDateString
-  let strDate = date.toLocaleDateString('en-GB', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric'
+  let strDate = date.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
   });
 
   try {
-    let foods = await trackingModel.find({ userId: userid, eatenDate: strDate }).populate('userId').populate('foodId');
+    let foods = await trackingModel
+      .find({ userId: userid, eatenDate: strDate })
+      .populate("userId")
+      .populate("foodId");
     res.send(foods);
 
-    console.log("UserID: ", userid, "Raw Date: ", date, "Formatted Date: ", strDate, "Formatted Foods: ", foods);
+    console.log(
+      "UserID: ",
+      userid,
+      "Raw Date: ",
+      date,
+      "Formatted Date: ",
+      strDate,
+      "Formatted Foods: ",
+      foods
+    );
   } catch (err) {
     console.log(err);
     res.status(500).send({ message: "Some Problem in getting the food" });
   }
 });
 
-
 // starting the server
 app.listen(port, () => {
-  console.log("Server up and running on port:", port);
+  console.log("Server up and running on port:", 8000);
 });

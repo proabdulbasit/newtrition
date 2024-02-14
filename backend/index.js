@@ -183,6 +183,6 @@ app.get(`${frontend}/tracking/:userid/:date`, async (req, res) => {
 });
 
 // starting the server
-app.listen(port, () => {
+app.listen(() => {
   console.log("Server up and running on port:", 8000);
 });

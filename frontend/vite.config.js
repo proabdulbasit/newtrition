@@ -8,7 +8,5 @@ export default defineConfig({
   build: {
     sourcemap: true, 
   },
-  define: {
-    'import.meta.env.REACT_APP_BACKEND_URL': JSON.stringify(import.meta.env.REACT_APP_BACKEND_URL),
-  },
+  
 })

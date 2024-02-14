@@ -31,8 +31,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+const frontend = process.env.FRONTEND_URL;
+
 // endpoint for registering new user
-app.post("/register", (req, res) => {
+app.post(`${frontend}/register`, (req, res) => {
   let user = req.body;
 
   bcrypt.genSalt(10, (err, salt) => {
@@ -55,7 +57,7 @@ app.post("/register", (req, res) => {
 });
 
 // endpoint for login
-app.post("/login", async (req, res) => {
+app.post(`${frontend}/login`, async (req, res) => {
   let userCred = req.body;
 
   try {
@@ -88,7 +90,7 @@ app.post("/login", async (req, res) => {
 });
 
 // endpoint to fetch all foods
-app.get("/foods", verifyToken, async (req, res) => {
+app.get(`${frontend}/foods`, verifyToken, async (req, res) => {
   try {
     let foods = await foodModel.find();
     res.send(foods);
@@ -99,7 +101,7 @@ app.get("/foods", verifyToken, async (req, res) => {
 });
 
 // endpoint to add a food item
-app.post("/foods", verifyToken, async (req, res) => {
+app.post(`${frontend}/foods`, verifyToken, async (req, res) => {
   let food = req.body;
 
   try {
@@ -112,7 +114,7 @@ app.post("/foods", verifyToken, async (req, res) => {
 });
 
 // endpoint search food by name
-app.get("/foods/:name", verifyToken, async (req, res) => {
+app.get(`${frontend}/foods/:name`, verifyToken, async (req, res) => {
   try {
     // $regex makes a wider relative search returning all similar search results and 'i' makes the search case insensitive
     let foods = await foodModel.find({
@@ -130,7 +132,7 @@ app.get("/foods/:name", verifyToken, async (req, res) => {
 });
 
 // endpoint for tracking food + quantity
-app.post("/tracking", verifyToken, async (req, res) => {
+app.post(`${frontend}/tracking`, verifyToken, async (req, res) => {
   let trackData = req.body;
   try {
     let data = await trackingModel.create(trackData);
@@ -145,7 +147,7 @@ app.post("/tracking", verifyToken, async (req, res) => {
 // endpoint to fetch all foods eaten by a person
 // endpoint to fetch all foods eaten by a person
 
-app.get("/tracking/:userid/:date", async (req, res) => {
+app.get(`${frontend}/tracking/:userid/:date`, async (req, res) => {
   let userid = req.params.userid;
   let date = new Date(req.params.date);
   date.setMinutes(date.getMinutes() - date.getTimezoneOffset());

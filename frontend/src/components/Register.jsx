@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
+
 function Register() {
   const navigate = useNavigate();
 
@@ -26,7 +29,7 @@ function Register() {
     event.preventDefault();
     
 
-    fetch("http://localhost:8000/register", {
+    fetch(`${BACKEND_URL}/register`, {
       method: "POST",
       body: JSON.stringify(userDetails),
       headers: {

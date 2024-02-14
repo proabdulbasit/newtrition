@@ -10,6 +10,8 @@ import { UserContext } from "./contexts/UserContext";
 import { useState } from "react";
 import Private from "./components/Private";
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
 function App() {
   const [loggedUser, setLoggedUser] = useState(
     JSON.parse(localStorage.getItem("newtrition-user"))
@@ -22,14 +24,14 @@ function App() {
         <UserContext.Provider value={{ loggedUser, setLoggedUser }}>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Login />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
+              <Route path={`${BACKEND_URL}/`} element={<Login />} />
+              <Route path={`${BACKEND_URL}/login`} element={<Login />} />
+              <Route path={`${BACKEND_URL}/register`} element={<Register />} />
               <Route
-                path="/tracking"
+                path={`${BACKEND_URL}/tracking`}
                 element={<Private Component={Tracking} />}
               />
-              <Route path="/diet" element={<Private Component={Diet} />} />
+              <Route path={`${BACKEND_URL}/diet`} element={<Private Component={Diet} />} />
               <Route path="*" element={<Notfound />} />
             </Routes>
           </BrowserRouter>

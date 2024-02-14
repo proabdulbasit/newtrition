@@ -5,6 +5,8 @@ import { UserContext } from "../contexts/UserContext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
 function Food(props) {
   const navigate = useNavigate();
 
@@ -54,7 +56,7 @@ function Food(props) {
     };
     
 
-    fetch("http://localhost:8000/tracking", {
+    fetch(`${BACKEND_URL}/tracking`, {
       method: "POST",
       body: JSON.stringify(trackedItem),
       headers: {

@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
 function Login() {
   const navigate = useNavigate();
 
@@ -28,7 +30,7 @@ function Login() {
     event.preventDefault();
     console.log(userCreds);
 
-    fetch("http://localhost:8000/login", {
+    fetch(`${BACKEND_URL}/login`, {
       method: "POST",
       body: JSON.stringify(userCreds),
       headers: {

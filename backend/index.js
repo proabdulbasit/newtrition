@@ -13,6 +13,13 @@ import { verifyToken } from "./verifyToken.js";
 const secretKey = process.env.SECRET_KEY;
 const DBurl = process.env.MONGODB_URL;
 const port = process.env.PORT;
+// initiating express for endpoints
+const app = express();
+
+// middleware to take care of parse and stringify and data chunking in the background with http
+app.use(express.json());
+
+app.use(cors());
 
 // database connection
 mongoose
@@ -24,13 +31,6 @@ mongoose
     console.log(err);
   });
 
-// initiating express for endpoints
-const app = express();
-
-// middleware to take care of parse and stringify and data chunking in the background with http
-app.use(express.json());
-
-app.use(cors());
 
 const frontend = process.env.FRONTEND_URL;
 console.log("Frontend URL:", frontend);

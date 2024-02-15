@@ -11,8 +11,8 @@ import { trackingModel } from "./models/trackingModel.js";
 import { verifyToken } from "./verifyToken.js";
 
 const secretKey = process.env.SECRET_KEY;
-const DBurl = "mongodb+srv://newtrition:9sDVkUm25WBtoCkW@cluster0.lmkutuc.mongodb.net/Newtrition?retryWrites=true&w=majority";
-const port = 10000;
+const DBurl = process.env.MONGODB_URL;
+const port = process.env.PORT;
 
 // database connection
 mongoose

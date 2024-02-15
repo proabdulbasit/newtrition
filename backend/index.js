@@ -29,6 +29,7 @@ const app = express();
 
 // middleware to take care of parse and stringify and data chunking in the background with http
 app.use(express.json());
+app.use(express.urlencoded());
 app.use(cors());
 
 const frontend = process.env.FRONTEND_URL;

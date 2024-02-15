@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-
+console.log(BACKEND_URL)
 function Login() {
   const navigate = useNavigate();
 

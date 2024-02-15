@@ -33,6 +33,7 @@ app.use(express.urlencoded());
 app.use(cors());
 
 const frontend = process.env.FRONTEND_URL;
+console.log("Frontend URL:", frontend);
 
 // endpoint for registering new user
 app.post(`${frontend}/register`, (req, res) => {

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-
+console.log(BACKEND_URL)
 
 function Register() {
   const navigate = useNavigate();

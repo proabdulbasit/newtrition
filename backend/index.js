@@ -12,7 +12,7 @@ import { verifyToken } from "./verifyToken.js";
 
 const secretKey = process.env.SECRET_KEY;
 const DBurl = process.env.MONGODB_URL;
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 // initiating express for endpoints
 const app = express();
 
@@ -186,5 +186,5 @@ app.get(`${frontend}/tracking/:userid/:date`, async (req, res) => {
 
 // starting the server
 app.listen(port, () => {
-  console.log(`Server up and running on port:, ${port}`);
+  console.log(`Server up and running on port: ${port}`);
 });
